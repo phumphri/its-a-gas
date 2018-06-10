@@ -105,7 +105,7 @@ def disconnect_from_postgres(conn):
 
 @app.route("/")
 def home():
-    return "html/index.html"
+    return render_template("html/index.html")
     
 
 
