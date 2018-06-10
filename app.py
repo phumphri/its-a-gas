@@ -109,7 +109,7 @@ def home():
 
 @app.route("/proposal")
 def proposal():
-    return render_template("proposal.html")
+    return render_template("Proposal.html")
 
     
 
