@@ -349,9 +349,8 @@ def update():
 
         print('sql:', sql)
 
-        rows = upsert_postgres(sql)
+        # upsert_postgres(sql)
 
-        print("rows:", rows)
 
     return render_template('index.html')
 
