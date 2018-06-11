@@ -345,7 +345,7 @@ def update():
         sql = sql + "on conflict (personnel_id) do update "
         sql = sql + "set first_name = '" + first_name + "', "
         sql = sql + "last_name = '" + last_name + "' "
-        sql = sql + "where personnel.personnel_id = " + personnel_id + " "
+        sql = sql + "where personnel.personnel_id = " + personnel_id + "; commit; "
 
         print('sql:', sql)
 
