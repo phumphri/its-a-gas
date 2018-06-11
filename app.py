@@ -340,12 +340,12 @@ def update():
         print("\nfirst_name:", first_name)
         print("\nlast_name:", last_name)
 
-        sql = "insert into its_a_gas.personnel (personnel_id, first_name, last_name) "
+        sql = "insert into its_a_gas.personnel "
         sql = sql + "values (" + personnel_id + ", '" + first_name + "', '" + last_name + "') "
         sql = sql + "on conflict (personnel_id) do update "
         sql = sql + "set first_name = '" + first_name + "', "
         sql = sql + "last_name = '" + last_name + "' "
-        sql = sql + "where its_a_gas.personnel.personnel_id = " + personnel_id + " "
+        sql = sql + "where personnel.personnel_id = " + personnel_id + " "
 
         print('sql:', sql)
 
