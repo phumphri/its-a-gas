@@ -75,6 +75,26 @@ def query_postgres(sql):
     
     return rows
 
+print("Defining upsert_postgres(sql).")
+def upsert_postgres(sql):
+    
+    print('sql:', sql)
+    
+    conn = connect_to_postgres()
+    
+    try:
+        cur = conn.cursor()
+        print('Cursor okay.')
+    except Exception as e:
+        print('Cursor failed:', e)
+        
+    try:
+        cur.execute(sql)
+        print('SQL okay.')
+    except Exception as e:
+        print('SQL failed:', e)
+        
+
 
 # In[ ]:
 
@@ -307,8 +327,8 @@ def samples(sample):
 # In[ ]:
 
 
-# Update
-@app.route('/update', methods=['POST'])
+# Upsert
+@app.route('/upsert', methods=['POST'])
 def update():
     first_name = None
     last_name = None
@@ -322,14 +342,14 @@ def update():
 
         sql = 'insert into its_a_gas.personnel ("ID", "FIRST_NAME", "LAST_NAME") '
         sql = sql + 'values (' + id + ', "' + first_name + '", "' + last_name + '") '
-        sql = sql + 'on conflict do update '
+        sql = sql + 'on conflict (id) '
         sql = sql + 'set first_name = "' + first_name + '", '
         sql = sql + 'last_name = "' + last_name + '" '
         sql = sql + 'where id = ' + id + ' '
 
         print('sql:', sql)
 
-        rows = query_postgres(sql)
+        rows = upsert_postgres(sql)
 
         print("rows:", rows)
 
