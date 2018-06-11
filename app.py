@@ -351,6 +351,9 @@ def update():
 
         upsert_postgres(sql)
 
+        print("request:")
+        print(request)
+
 
     return render_template('index.html')
 
