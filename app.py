@@ -327,9 +327,11 @@ def update():
         sql = sql + 'last_name = "' + last_name + '" '
         sql = sql + 'where id = ' + id + ' '
 
-          rows = query_postgres(sql)
+        print('sql:', sql)
 
-          print("rows:", rows)
+        rows = query_postgres(sql)
+
+        print("rows:", rows)
 
     return render_template('index.html')
 
