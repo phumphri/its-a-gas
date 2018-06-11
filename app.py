@@ -22,7 +22,7 @@ from flask import (
 
 
 # Assigning the Flask framework.
-let app = Flask(__name__)
+app = Flask(__name__)
 
 # Connect to the Postgres database.
 print("Defining connect_to_postgres()")
