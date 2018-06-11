@@ -333,26 +333,48 @@ def update():
     first_name = None
     last_name = None
     if request.method == 'POST':
-        personnel_id = request.form['personnel_id']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
 
-        print("\nfirst_name:", first_name)
-        print("\nlast_name:", last_name)
+        content = request.get_json(silent=True)
+        data_list = json.loads(content)
 
-        sql = "insert into its_a_gas.personnel "
-        sql = sql + "values (" + personnel_id + ", '" + first_name + "', '" + last_name + "') "
-        sql = sql + "on conflict (personnel_id) do update "
-        sql = sql + "set first_name = '" + first_name + "', "
-        sql = sql + "last_name = '" + last_name + "' "
-        sql = sql + "where personnel.personnel_id = " + personnel_id + "; commit; "
 
-        print('sql:', sql)
+        for index in range(len(data_list)):
+            jsonObject = data_list[index]
+            personnel_id = jsonObject['personnel_id']
+            first_name = jsonObject['first_name']
+            last_name = jsonObject['last_name']
+            print(personnel_id, first_name, last_name)
+    
 
-        upsert_postgres(sql)
+      
 
-        print("request:")
-        print(request)
+       
+
+    
+
+        # personnel_id = response.personnel_id
+        # first_name = response.first_name
+        # last_name = response.last_name
+
+        # print("\nfirst_name:", first_name)
+        # print("\nlast_name:", last_name)
+
+        # sql = "insert into its_a_gas.personnel "
+        # sql = sql + "values (" + personnel_id + ", '" + first_name + "', '" + last_name + "') "
+        # sql = sql + "on conflict (personnel_id) do update "
+        # sql = sql + "set first_name = '" + first_name + "', "
+        # sql = sql + "last_name = '" + last_name + "' "
+        # sql = sql + "where personnel.personnel_id = " + personnel_id + "; commit; "
+
+        # print('sql:', sql)
+
+        # upsert_postgres(sql)
+
+
+        # response.status_code = 200 # or 400 or whatever
+        # return response
+
+ 
 
 
     return render_template('index.html')
