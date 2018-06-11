@@ -333,19 +333,19 @@ def update():
     first_name = None
     last_name = None
     if request.method == 'POST':
-        id = request.form['id']
+        personnel_id = request.form['personnel_id']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
 
         print("\nfirst_name:", first_name)
         print("\nlast_name:", last_name)
 
-        sql = "insert into its_a_gas.personnel (id, first_name, last_name) "
+        sql = "insert into its_a_gas.personnel (personnel_id, first_name, last_name) "
         sql = sql + "values (" + id + ", '" + first_name + "', '" + last_name + "') "
-        sql = sql + "on conflict (id) do update "
+        sql = sql + "on conflict (personnel_id) do update "
         sql = sql + "set first_name = '" + first_name + "', "
         sql = sql + "last_name = '" + last_name + "' "
-        sql = sql + "where id = " + id + " "
+        sql = sql + "where personnel_id = " + personnel_id + " "
 
         print('sql:', sql)
 
