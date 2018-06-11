@@ -20,15 +20,11 @@ from flask import (
     redirect)
 
 
-# In[ ]:
 
+# Assigning the Flask framework.
+let app = Flask(__name__)
 
-app = Flask(__name__)
-
-
-# In[ ]:
-
-
+# Connect to the Postgres database.
 print("Defining connect_to_postgres()")
 def connect_to_postgres():
     hostname = socket.gethostname()
@@ -313,7 +309,17 @@ def samples(sample):
 # In[ ]:
 
 
-# samples('BB_944')
+# Update
+@app.route('/update', methods=['POST'])
+def update():
+    first_name = None
+    last_name = None
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        print("\nfirst_name:", first_name)
+        print("\nlast_name:", last_name)
+    return render_template('index.html')
 
 
 # In[ ]:
