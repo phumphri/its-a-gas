@@ -103,9 +103,7 @@ def disconnect_from_postgres(conn):
 def home():
     return render_template("index.html")
 
-@app.route("/proposal")
-def proposal():
-    return render_template("Proposal.md")
+
 
     
 
@@ -315,10 +313,22 @@ def update():
     first_name = None
     last_name = None
     if request.method == 'POST':
+        id = request.form['id']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+
         print("\nfirst_name:", first_name)
         print("\nlast_name:", last_name)
+
+        sql = 'insert into its_a_gas.personnel ("ID", "FIRST_NAME", "LAST_NAME") '
+        sql = sql + 'values (' + id + ', "' + first_name + '", "' + last_name + '") '
+        sql = sql + 'on conflict do update '
+        sql = sql + 'set first_name = "' + first_name + '", '
+        sql = sql + 'last_name = "' + last_name + '" '
+        sql = sql + 'where id = ' + id + ' '
+
+
+
     return render_template('index.html')
 
 
