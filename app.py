@@ -349,7 +349,7 @@ def update():
 
         print('sql:', sql)
 
-        # upsert_postgres(sql)
+        upsert_postgres(sql)
 
 
     return render_template('index.html')
