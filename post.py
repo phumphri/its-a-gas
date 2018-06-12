@@ -1,7 +1,30 @@
+"""
+Module:  post.appy
+Description:  Sample API program for adding data to the database.
+
+Behavior:   1.  If the key is not found on the database, the record is added.
+            2.  If the key is found on the database, nothing is done.
+
+Required:   1.  Metadata specifying schema, table name, and key column name.
+            2.  Table Data (List) containing rows (tuples).
+            3.  Each tuple must exactly match the database row.
+            4.  If you want to run locally with your own Postgres database, see Patrick.
+
+
+Errors:     1.  If the tuple has too many values, rs.text will return:
+                "not all arguments converted during string formatting.
+            2.  If the tuple has less values than columns in the table, rs.text will return:
+                "list index out of range"
+
+Example:    This code adds three personnel to the personnel table.
+
+Advice:     Run this example against our API running on Heroku.
+"""
+
 import requests
 import json
 
-# Create json dictionary to hold metadata and 
+# Create json dictionary to hold metadata and table data.
 json_dict = {}
 
 # Add metadata that specifies schema and table.
@@ -21,6 +44,10 @@ table_data.append(table_row)
 
 # Add a row.
 table_row = (1, "Tom", "Clancy")
+table_data.append(table_row)
+
+# Add a row.
+table_row = (9, "Walter", "Issacson")
 table_data.append(table_row)
 
 # Add table_data to json dictionary.
