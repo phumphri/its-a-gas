@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-
+from requests.models import Response
 import psycopg2
 import pandas as pd
 import numpy as np
@@ -75,10 +75,7 @@ def query_postgres(sql):
     
     return rows
 
-print("Defining upsert_postgres(sql).")
-def upsert_postgres(sql):
-    
-    print('sql:', sql)
+def execute_postgres(sql):
     
     conn = connect_to_postgres()
     
@@ -86,13 +83,16 @@ def upsert_postgres(sql):
         cur = conn.cursor()
         print('Cursor okay.')
     except Exception as e:
-        print('Cursor failed:', e)
+        print('Cursor failed:', str(e))
+        return str(e)
         
     try:
         cur.execute(sql)
         print('SQL okay.')
+        return cur.statusmessage
     except Exception as e:
-        print('SQL failed:', e)
+        print('SQL failed:', str(e))
+        return str(e)
         
 
 
@@ -327,57 +327,72 @@ def samples(sample):
 # In[ ]:
 
 
-# Upsert
-@app.route('/upsert', methods=['POST'])
-def update():
-    first_name = None
-    last_name = None
+# Insert
+@app.route('/insert', methods=['POST'])
+def insert():
+
     if request.method == 'POST':
 
-        content = request.get_json(silent=True)
-        data_list = json.loads(content)
+        json_string = request.get_json(silent=True)
+        print("\ntype(json_string):", type(json_string)) 
+        print("\njson_string:", json_string)
 
+        json_dict = json.loads(json_string)
+        print("\ntype(json_dict):", type(json_dict), "\n\n")
 
-        for index in range(len(data_list)):
-            jsonObject = data_list[index]
-            personnel_id = jsonObject['personnel_id']
-            first_name = jsonObject['first_name']
-            last_name = jsonObject['last_name']
-            print(personnel_id, first_name, last_name)
+        json_metadata = json_dict['metadata']
+
+        print("schema:", json_metadata['schema'])
+        print("table:", json_metadata['table'])
+
+        print("table_data", json_dict['table_data'])
     
+        status_message = ""
 
-      
+        sql = "insert into " + json_metadata['schema'] + "." + json_metadata['table'] + " "
 
-       
-
-    
-
-        # personnel_id = response.personnel_id
-        # first_name = response.first_name
-        # last_name = response.last_name
-
-        # print("\nfirst_name:", first_name)
-        # print("\nlast_name:", last_name)
-
-        # sql = "insert into its_a_gas.personnel "
-        # sql = sql + "values (" + personnel_id + ", '" + first_name + "', '" + last_name + "') "
-        # sql = sql + "on conflict (personnel_id) do update "
-        # sql = sql + "set first_name = '" + first_name + "', "
-        # sql = sql + "last_name = '" + last_name + "' "
-        # sql = sql + "where personnel.personnel_id = " + personnel_id + "; commit; "
-
-        # print('sql:', sql)
-
-        # upsert_postgres(sql)
+        sql += "values ( "
 
 
-        # response.status_code = 200 # or 400 or whatever
-        # return response
+        for i in range(len(json_dict['table_data'][0]) - 1):
+            sql += "%s, "
 
+        sql += "%s) "
+            
+        sql += "on conflict (" + json_metadata['key'] + ") do nothing; "
+
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            cur.executemany(sql, json_dict['table_data'])
+            print('Execute Many Okay.')
+
+            status_message = cur.statusmessage
+            print("cur.statusmessage:", status_message)
+
+            conn.commit()
+            print('Commit Okay.')
+
+        except Exception as e:
+            print('Execute Many Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
  
-
-
-    return render_template('index.html')
+        return status_message        
+    
+    return "The inserert was not method POST"
 
 
 # In[ ]:
