@@ -10,6 +10,9 @@ carData = {
 // Temporary, key string is search parameter, change this key to generate make file name
 let key = 'Kia'
 let baseQueryUrl = 'https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims';
+
+// Using axios to hit API with a get request
+// TODO: make for loop to run trim request for years
 axios.get(`${baseQueryUrl}&make=${key}`, {
   responseType: 'json',
   transformResponse: [data => {
