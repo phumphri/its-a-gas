@@ -7,8 +7,8 @@ carData = {
   itemsProcessed: 0
 }
 
-// Temporary, key string is search parameter
-let key = 'Lamborghini'
+// Temporary, key string is search parameter, change this key to generate make file name
+let key = 'Kia'
 let baseQueryUrl = 'https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims';
 axios.get(`${baseQueryUrl}&make=${key}`, {
   responseType: 'json',
@@ -28,9 +28,7 @@ axios.get(`${baseQueryUrl}&make=${key}`, {
     }
   });
 }).catch(error => {
-  if (error) {
-    console.log(error);
-  }
+  if (err) throw err;
 })
 
 
@@ -46,9 +44,9 @@ let ToFile = obj => {
     csv.unshift(header.join(','))
     // console.log(csv.join('/r/n'));
 
-    fs.writeFile('testFile.csv', csv.join('\r\n'), err => {
+    fs.writeFile(`${key}.csv`, csv.join('\r\n'), err => {
         if (err) throw err;
-        console.log("saved!");
+        console.log(`CSV file was successfully created: ${key}.csv`);
     })
 
     return 0;
