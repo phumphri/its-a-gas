@@ -1,0 +1,22 @@
+{
+  "name": "its-a-gas",
+  "version": "1.0.0",
+  "description": "\"It's a gas!\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phumphri/its-a-gas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phumphri/its-a-gas/issues"
+  },
+  "homepage": "https://github.com/phumphri/its-a-gas#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
