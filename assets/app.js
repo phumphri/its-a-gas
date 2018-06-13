@@ -8,9 +8,9 @@ carData = {
 
 // Temporary, key string is search parameter, change this key to generate make file name
 // IMPORTANT: CHANGE THE KEY AND YEARS PARAMETER ONLY
-let key = 'Ford',
+let key = 'Maserati',
     baseQueryUrl = 'https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims',
-    years = [2008, 2009, 2010, 2011, 2012],
+    years = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
     dataGather
 // Using axios to hit API with a get request
 // TODO: make for loop to run trim request for years
