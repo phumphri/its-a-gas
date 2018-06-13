@@ -62,7 +62,7 @@ def domesticautos():
         else:
             print("Database Connection Okay.")
 
-        sql = "select * from its_a_gas.personnel"
+        sql = "select * from its_a_gas.domesticautos"
 
         try:
             cur = conn.cursor()
@@ -71,14 +71,28 @@ def domesticautos():
             cur.execute(sql)
             print('Execute Okay.')
 
-            rows = cur.fetchall()
+            table_data = cur.fetchall()
             print("Fetch All Okay")
 
-            rows = jsonify(rows)
+            
+            # Create json dictionary to hold metadata and table data.
+            json_dict = {}
+
+           # Add metadata that specifies schema and table.
+            json_metadata = {}
+            json_metadata["schema"] = "its_a_gas"
+            json_metadata["table"] = "domesticautos"
+            json_metadata["key"] = "month, year"
+            json_metadata["colmns"] = ["month", "year", "volume", "combined_volume", "adjusted_volume", "sales"]
+            json_dict['metadata'] = json_metadata
+ 
+            # Add table_data to json dictionary.
+            json_dict['table_data'] = table_data
+
+            json_object = jsonify(json_dict)
             print("jsonify Okay")
 
-            status_message = cur.statusmessage
-            print("cur.statusmessage:", status_message)
+            return json_object
 
         except Exception as e:
             print('Execute Failed', str(e))
