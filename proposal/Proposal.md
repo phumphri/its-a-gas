@@ -1,11 +1,11 @@
 
-# It's a Gas! 
+# It's a Gas!
 ![It's a Gas!](cq5dam.web.768.768.jpeg)
 ## Proposal
 
 
 There is an article in *Autoweek* announcing  that Ford will stop selling sedans (http://autoweek.com/article/car-news/ford-will-stop-selling-sedans-north-america-entirely-face-unstoppable-crossover. )This seemed strange, since sedans would seem to be the most popular car.  While preparing for this project, there was a discussion about the vehicles we drove.  The Ford Mustang, a coupe was one and another was a Ram Pickup Truck.  This prompted the question:<br/><br/><b>What drives the automobile market?</b><br/><br/>
-    
+
 This project is an attempt to answer this question by analyzing multiple data sources.  It is unknown where the data will reveal.  The approach will have an obvious numerical aspect to it.  However, judging by  the discussion of our own vehicles, there must be a visceral, emotional aspect to purchasing habits.  Hence, the name of this project:<br/><br/><b>It’s a Gas</b><br/><br/>This term does not mean only gas power vehicle are considered.  It is the term associated with the fun aspect of driving vehicles of our choosing.
 
 
@@ -29,6 +29,8 @@ __Data Architecture__ consists of three major components.
     * __Data Exploration__ The same data is acquired by Python modules using Pandas and RESTful calls.
 
 
+## Web Front-End template
+![FrontEnd](Websitemockup.JPG)
 
 
 ## Data Acquisition
@@ -60,4 +62,3 @@ Views are used for integration by joining tables that are sourced from different
 For Data Visualization, Javascript running in Chrome will use RESTful calls to get data from the database.  Javascript will use various libraries to plot the data.
 
 Data Exploration will be ad hoc in nature.  Python programs using Pandas and Matplotlib libraries will analyze and plot data.  Again, API calls will be used to acquire data from the database.
-

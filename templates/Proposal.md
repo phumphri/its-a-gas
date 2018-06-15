@@ -28,10 +28,6 @@ __Data Architecture__ consists of three major components.
     * __Data Visualization__  Web pages utilizing plotting and RESTful calls present the data in visually meaningful way.
     * __Data Exploration__ The same data is acquired by Python modules using Pandas and RESTful calls.
 
-## Web Front-End template
-(../assets/img/Websitemockup.JPG)
-
-
 ## Data Acquisition
 
 ![Data Architecture](Data_Acquisition_3.PNG)
