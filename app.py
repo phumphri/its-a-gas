@@ -48,8 +48,7 @@ def home():
     return render_template("index.html")
 
 
-
-@app.route('/manufacturer', methods=['POST', 'GET'])
+@app.route('/manufacturer', methods=['POST', 'GET', 'DELETE'])
 def manufacturer():
 
     if request.method == 'GET':
@@ -153,7 +152,6 @@ def manufacturer():
 
         print("schema:", json_metadata['schema'])
         print("table:", json_metadata['table'])
-        # print("table_data", json_dict['table_data'])
     
         status_message = ""
 
@@ -173,10 +171,9 @@ def manufacturer():
             status_message += "."
             return status_message
 
-        sql = "insert into " + json_metadata['schema'] + "." + json_metadata['table'] + " "
+        sql = "insert into its_a_gas.manufacturer "
 
         sql += "values ( "
-
 
         for i in range(len(json_dict['table_data'][0]) - 1):
             sql += "%s, "
@@ -204,7 +201,101 @@ def manufacturer():
             print("cur.statusmessage:", status_message)
 
             conn.commit()
-            print('Commit Okay.')
+            print('Execute Many Commit Okay.')
+
+        except Exception as e:
+            print('Execute Many Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+ 
+        # Initcap model_make_id. 
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            sql = "update its_a_gas.manufacturer set model_make_id = initcap(model_make_id); "
+            cur.execute(sql)
+            print('Execute Initcap Okay.')
+
+            conn.commit()
+            print('Initcap Commit Okay.')
+
+        except Exception as e:
+            print('Execute Many Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+ 
+        # Upper model_make_id. 
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            sql = "update its_a_gas.manufacturer set model_make_id = upper(model_make_id) "
+            sql += "where model_make_id in ('Bmw', 'Gmc'); "
+            cur.execute(sql)
+            print('Execute Upper Okay.')
+
+            conn.commit()
+            print('Third Commit Okay.')
+
+        except Exception as e:
+            print('Execute Many Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+
+        return status_message        
+    
+    if request.method == 'DELETE':
+
+        sql = "delete from its_a_gas.manufacturer"
+
+        status_message = sql
+
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            cur.execute(sql)
+            print('Execute Delete Okay.')
+
+            status_message = cur.statusmessage
+            print("cur.statusmessage:", status_message)
+
+            conn.commit()
+            print('Delete Commit Okay.')
 
         except Exception as e:
             print('Execute Many Failed', str(e))
@@ -216,7 +307,7 @@ def manufacturer():
  
         return status_message        
     
-    return "The inserert was not method POST"
+    return "The request.method was not method POST, GET, or DELETE."
 
 
 @app.route('/foreignlighttrucks', methods=['POST', 'GET'])
@@ -356,7 +447,6 @@ def foreignlighttrucks():
     return "Invalid method:  " + request.method
 
 
-
 @app.route('/domesticlighttrucks', methods=['POST', 'GET'])
 def domesticlighttrucks():
 
@@ -492,7 +582,6 @@ def domesticlighttrucks():
         return status_message        
     
     return "Invalid method:  " + request.method
-
 
 
 @app.route('/foreignautos', methods=['POST', 'GET'])
@@ -632,11 +721,6 @@ def foreignautos():
     return "The inserert was not method POST"
 
 
-
-
-
-
-
 @app.route('/domesticautos', methods=['POST', 'GET'])
 def domesticautos():
 
@@ -772,6 +856,7 @@ def domesticautos():
         return status_message        
     
     return "The inserert was not method POST"
+
 
 @app.route('/personnel', methods=['POST', 'GET'])
 def personnel():
@@ -948,7 +1033,6 @@ def sales_rollup():
     return "The request.method was not method GET"
 
 
-
 @app.route('/models_offered_by_year', methods=['GET'])
 def models_offered_by_year():
 
@@ -1004,17 +1088,6 @@ def models_offered_by_year():
         return rows
     
     return "The request.method was not method GET"
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
