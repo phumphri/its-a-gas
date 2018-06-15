@@ -15,12 +15,12 @@ from flask import (
     jsonify,
     request,
     redirect)
-
+from flask_cors import CORS
 
 
 # Assigning the Flask framework.
 app = Flask(__name__)
-
+CORS(app)
 
 def connect_to_postgres():
     hostname = socket.gethostname()
@@ -890,7 +890,7 @@ def personnel():
     return "The inserert was not method POST"
 
 
-@app.route('/sales_rollup', methods=['POST', 'GET'])
+@app.route('/sales_rollup', methods=['GET'])
 def sales_rollup():
 
     if request.method == 'GET':
@@ -949,7 +949,7 @@ def sales_rollup():
 
 
 
-@app.route('/models_offered_by_year', methods=['POST', 'GET'])
+@app.route('/models_offered_by_year', methods=['GET'])
 def models_offered_by_year():
 
     if request.method == 'GET':
