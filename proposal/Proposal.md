@@ -32,6 +32,8 @@ __Data Architecture__ consists of three major components.
 ## Web Front-End template
 ![FrontEnd](Websitemockup.JPG)
 
+Front end functionality and design is still tentative, this is just a rough draft.
+
 
 ## Data Acquisition
 
