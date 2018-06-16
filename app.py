@@ -1145,6 +1145,53 @@ def mpg():
     
     return "The request.method was not method GET."
 
+
+@app.route('/gdp', methods=['GET'])
+def gdp():
+
+    if request.method == 'GET':
+
+        # Create json dictionary to hold metadata and table data.
+        json_dict = {}
+
+        # Add metadata that specifies schema and table.
+        json_metadata = {}
+        json_metadata["schema"] = "its_a_gas"
+        json_metadata["table"] = "gdp"
+        json_metadata["columns"] = ["Year", "Real_GDP_Trillions"]
+        json_dict['metadata'] = json_metadata
+
+        table_data = [
+            [2007, 14.874],
+            [2008, 14.83],
+            [2009, 14.419],
+            [2010, 14.784],
+            [2011, 15.021],
+            [2012, 15.355],
+            [2013, 15.612],
+            [2014, 16.013],
+            [2015, 16.472],
+            [2016, 16.716],
+            [2017, 17.096]]
+
+        # Add table_data to json dictionary.
+        json_dict['table_data'] = table_data
+
+        json_object = jsonify(json_dict)
+        print("jsonify Okay")
+
+        return json_object        
+
+    return "The request.method was not method GET."
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     hostname = socket.gethostname()
     print("socket.hostname():", hostname)
