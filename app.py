@@ -16,6 +16,7 @@ from flask import (
     request,
     redirect)
 from flask_cors import CORS
+import data_loader
 
 
 # Assigning the Flask framework.
@@ -1185,9 +1186,15 @@ def gdp():
     return "The request.method was not method GET."
 
 
+@app.route('/call_data_loader/<program_name>', methods=['GET'])
+def call_data_loader(program_name):
 
+    print("Calling data_loader(" + program_name + ")")
 
+    if request.method == 'GET':
+        return data_loader.run(program_name)
 
+    return "The request.method was not method GET."
 
 
 
