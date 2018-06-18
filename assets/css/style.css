@@ -10,8 +10,8 @@ body{
 
 #gifPlayer{
   background-image: url(../img/Lambo.gif);
-  background-position: 175px -150px;
-  background-size: 100%;
+  background-position: 260px -100px;
+  background-size: 90%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
