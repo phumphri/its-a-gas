@@ -1370,7 +1370,61 @@ def manufacurer_loader():
 
     return "Invalid request.method:  " + request.method
 
+@app.route('/build_model_table', methods=['GET'])
+def build_model_table():
 
+    if request.method == 'GET':
+
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            sql = "select its_a_gas.build_model_table(); commit; select * from its_a_gas.model_view"
+
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            cur.execute(sql)
+            print('Execute Okay.')
+
+            table_data = cur.fetchall()
+            print("Fetch All Okay")
+
+            
+            # Create json dictionary to hold metadata and table data.
+            json_dict = {}
+
+           # Add metadata that specifies schema and table.
+            json_metadata = {}
+            json_metadata["schema"] = "its_a_gas"
+            json_metadata["table"] = "model_view"
+            json_metadata["columns"] = ["model_year", "model_body", "models_offered"]
+            json_dict['metadata'] = json_metadata
+ 
+            # Add table_data to json dictionary.
+            json_dict['table_data'] = table_data
+
+            json_object = jsonify(json_dict)
+            print("jsonify Okay")
+
+            return json_object
+
+        except Exception as e:
+            print('Execute Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+ 
+        return rows
+    
+    return "The request.method was not method GET"
 
 if __name__ == "__main__":
     hostname = socket.gethostname()
