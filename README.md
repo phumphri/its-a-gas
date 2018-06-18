@@ -1,5 +1,5 @@
 # It's a Gas!
-![It's a Gas!](cq5dam.web.768.768.jpeg)
+![It's a Gas!](proposal/cq5dam.web.768.768.jpeg)
 ## Proposal
 
 
