@@ -36,7 +36,7 @@ Front end functionality and design is still tentative, this is just a rough draf
 
 ## Data Acquisition
 
-![Data Architecture](assets/img/Acquisition.PNG)
+![Data Architecture](assets/img/Data_Acquisition_3.PNG)
 
 Multiple datasources were selected.  This is done by API access, web scraping, or "cut and paste".
 
@@ -46,7 +46,7 @@ The prepared data is loaded into the database using an API.
 
 ## Data Modeling
 
-![Data Architecture](assets/img/Modeling.PNG)
+![Data Architecture](assets/img/Data_Modeling_2.PNG)
 
 Performance can be improved and visualization simplified by doing aggregate functions in advance.
 
@@ -58,7 +58,7 @@ Views are used for integration by joining tables that are sourced from different
 
 ## Data Access
 
-![Data Architecture](assets/img/Access.PNG)
+![Data Architecture](assets/img/Data_Access_2.PNG)
 
 For Data Visualization, Javascript running in Chrome will use RESTful calls to get data from the database.  Javascript will use various libraries to plot the data.
 
