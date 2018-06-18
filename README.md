@@ -1,5 +1,5 @@
 # It's a Gas!
-![It's a Gas!](proposal/cq5dam.web.768.768.jpeg)
+![It's a Gas!](assets/img/cq5dam.web.768.768.jpeg)
 ## Proposal
 
 
@@ -15,7 +15,7 @@ Where the data leads is uncertain.
 
 ## Data Architecture
 
-![Data Architecture](Architecture.PNG)
+![Data Architecture](assets/img/Architecture.PNG)
 __Data Architecture__ consists of three major components.
 1. __Data Acquisition__ Data is acquired from the Internet, cleaned, and loaded into a database.
 2. __Data Modeling__ Relatively static operations are done with the data.
@@ -29,14 +29,14 @@ __Data Architecture__ consists of three major components.
 
 
 ## Web Front-End template
-![FrontEnd](Websitemockup.JPG)
+![FrontEnd](assets/img/Websitemockup.JPG)
 
 Front end functionality and design is still tentative, this is just a rough draft.
 
 
 ## Data Acquisition
 
-![Data Architecture](Acquisition.PNG)
+![Data Architecture](assets/img/Acquisition.PNG)
 
 Multiple datasources were selected.  This is done by API access, web scraping, or "cut and paste".
 
@@ -46,7 +46,7 @@ The prepared data is loaded into the database using an API.
 
 ## Data Modeling
 
-![Data Architecture](Modeling.PNG)
+![Data Architecture](assets/img/Modeling.PNG)
 
 Performance can be improved and visualization simplified by doing aggregate functions in advance.
 
@@ -58,7 +58,7 @@ Views are used for integration by joining tables that are sourced from different
 
 ## Data Access
 
-![Data Architecture](Access.PNG)
+![Data Architecture](assets/img/Access.PNG)
 
 For Data Visualization, Javascript running in Chrome will use RESTful calls to get data from the database.  Javascript will use various libraries to plot the data.
 
