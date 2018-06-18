@@ -16,7 +16,7 @@ from flask import (
     request,
     redirect)
 from flask_cors import CORS
-import data_loader
+import read_s3
 
 
 # Assigning the Flask framework.
@@ -1186,16 +1186,189 @@ def gdp():
     return "The request.method was not method GET."
 
 
-@app.route('/call_data_loader/<program_name>', methods=['GET'])
-def call_data_loader(program_name):
+@app.route('/data_loader/<table_name>', methods=['GET'])
+def data_loader(table_name):
 
-    print("Calling data_loader(" + program_name + ")")
 
     if request.method == 'GET':
-        return data_loader.run(program_name)
 
-    return "The request.method was not method GET."
+        if table_name == "domesticautos":
+            key_fields = "month, year"
+        elif table_name == "foreignautos":
+            key_fields = "month, year"
+        elif table_name == "domesticlighttrucks":
+            key_fields = "month, year"
+        elif table_name == "foreignlighttrucks":
+            key_fields = "month, year"
+        else:
+            print("Invalid table name:", table_name)
+            return "Invalid table name:  " + table_name
 
+        file_name = table_name + ".csv"
+
+        table_data = read_s3.run('its-a-gas', file_name)
+
+        sql = "insert into its_a_gas." + table_name + " "
+
+        sql += "values ( "
+
+
+        print("Number of fields:", len(table_data[0]))
+        print("table_data[0]:", table_data[0])
+
+        for i in range(len(table_data[0]) - 1):
+            sql += "%s, "
+
+        sql += "%s) "
+            
+        sql += "on conflict (" + key_fields + ") do nothing; "
+
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            cur.executemany(sql, table_data)
+            print('Execute Many Okay.')
+
+            status_message = cur.statusmessage
+            print("cur.statusmessage:", status_message)
+
+            conn.commit()
+            print('Commit Okay.')
+
+        except Exception as e:
+            print('Execute Many Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+ 
+        return status_message     
+
+    return "Invalid request.method:  " + request.method
+
+
+@app.route('/manufacturer_loader', methods=['GET'])
+def manufacurer_loader():
+
+    request_method = "Boffo"
+
+    if request.method == 'GET':
+
+        sql = "delete from its_a_gas.manufacturer"
+            
+        conn = None
+        conn = connect_to_postgres()
+        if conn is None:
+            print("Database Connection Failed.")
+            return "Database Connection Failed"
+        else:
+            print("Database Connection Okay.")
+
+        try:
+            cur = conn.cursor()
+            print('Cursor okay.')
+
+            cur.execute(sql)
+            print('Execute Delete Okay.')
+
+            status_message = cur.statusmessage
+            print("cur.statusmessage:", status_message)
+
+            conn.commit()
+            print('Delete Commit Okay.')
+
+        except Exception as e:
+            print('Execute Delete Failed', str(e))
+            return str(e)
+
+        finally:
+            if conn is not None:
+                conn.close
+
+        # Build list of manufacturers.
+        manufacturers = []
+        manufacturers.append("Audi")
+        manufacturers.append("BMW")
+        manufacturers.append("Ferrari")
+        manufacturers.append("Ford")
+        manufacturers.append("GMC")
+        manufacturers.append("Honda")
+        manufacturers.append("Kia")
+        manufacturers.append("Lamborghini")
+        manufacturers.append("Maserati")
+        manufacturers.append("Mazda")
+        manufacturers.append("Nissan")
+        manufacturers.append("Subaru")
+        manufacturers.append("Tesla")
+        manufacturers.append("Volkswagen")
+        manufacturers.append("Volvo")
+
+        key_field = "model_id"
+
+        for manufacturer in manufacturers:
+
+            print("\nProcessing Manufacturer:", manufacturer)
+
+            file_name = manufacturer + ".csv"
+
+            table_data = []
+
+            table_data = read_s3.run('its-a-gas', file_name)
+
+
+            sql = "insert into its_a_gas.manufacturer values ( "
+
+            for i in range(len(table_data[0]) - 1):
+                sql += "%s, "
+
+            sql += "%s) "
+                
+            sql += "on conflict (" + key_field + ") do nothing; "
+
+            # print("\nsql:", sql)
+
+            conn = None
+            conn = connect_to_postgres()
+            if conn is None:
+                print("Database Connection Failed.")
+                return "Database Connection Failed"
+            else:
+                print("Database Connection Okay.")
+
+            try:
+                cur = conn.cursor()
+                print('Cursor okay.')
+
+                cur.executemany(sql, table_data)
+                print('Execute Many Okay.')
+
+                status_message = cur.statusmessage
+                print("cur.statusmessage:", status_message)
+
+                conn.commit()
+                print('Commit Okay.')
+
+            except Exception as e:
+                print('Execute Many Failed', str(e))
+                return str(e)
+
+            finally:
+                if conn is not None:
+                    conn.close
+    
+        return status_message        
+
+    return "Invalid request.method:  " + request.method
 
 
 
