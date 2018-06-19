@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>It's a gas!</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+    <!-- Linking own CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="full-height">
+  <!-- GIF Background section / Intro -->
+  <div style="height: 100vh;">
+    <div style="height: 100%;" class="row mx-0 w-100">
+      <div class="col-3 px-0" id="profileUpper">
+      <!-- Profile for teammates -->
+        <div class="row mx-0">
+          <div class="card card-body profileCard rounded-0">
+            <div class="d-flex flex-row">
+              <h1 class="p-2">Ritter Gustave</h1>
+            </div>
+            <div class="d-flex flex-row">
+              <img class="profpic" src="https://avatars3.githubusercontent.com/u/29027741?s=460&v=4" alt="">
+              <div class="d-flex flex-row my-auto">
+                <h4>Full-Stack Engineer</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mx-0">
+          <div class="card card-body profileCard rounded-0">
+            <div class="d-flex flex-row">
+              <h1 class="p-2">Ellen Chan</h1>
+            </div>
+            <div class="d-flex flex-row">
+              <img class="profpic" src="https://avatars1.githubusercontent.com/u/33673306?s=460&v=4" alt="">
+              <div class="d-flex flex-row my-auto">
+                <h4>Data Analyst</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mx-0">
+          <div class="card card-body profileCard rounded-0">
+            <div class="d-flex flex-row">
+              <h1 id="patFit" class="p-2">Patrick Humphries</h1>
+            </div>
+            <div class="d-flex flex-row">
+              <img class="profpic" src="https://avatars2.githubusercontent.com/u/33231332?s=460&v=4" alt="">
+              <div class="d-flex flex-row my-auto">
+                <h4>Back-End Engineer</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mx-0">
+          <div class="card card-body profileCard rounded-0">
+            <div class="d-flex flex-row">
+              <h1 class="p-2">Alex Mathiessen</h1>
+            </div>
+            <div class="d-flex flex-row">
+              <img class="profpic" src="https://media.licdn.com/dms/image/C5103AQEVzeQM1yVZFQ/profile-displayphoto-shrink_800_800/0?e=1534982400&v=beta&t=3UwkvHX39XPSgjYOA1WukgQkJdEiGKNedomJvZBe3nA" alt="">
+              <div class="d-flex flex-row my-auto">
+                <h4>Data Analyst</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 px-0 h-100" id="gifPlayer">
+
+
+      <!-- Data and Gif Area -->
+      <ul class="nav nav-tabs w-100 rounded-0" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onchange="checkCurrentTab()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="analysis1" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onchange="checkCurrentTab()">Analysis 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onchange="checkCurrentTab()">Analysis 2</a>
+        </li>
+      </ul>
+
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div id="welcomeText">
+            <h1 class="text-center">Welcome to Its-a-Gas</h1>
+            <p>Ritter Gustave, Ellen Chen, Alex Mathiessen, Patrick Humphries</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="analysis1"><h1>blahdafl;sdjfasdlkfjasdlkfa</h1></div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+        <!-- background GIF plays here -->
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <!-- GIF Background section / Intro END. -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
+  <!-- Linking local Js -->
+  <script type="text/javascript" src="../assets/js/webApp.js"></script>
+</body>
+</html>
