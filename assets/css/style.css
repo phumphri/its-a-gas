@@ -10,16 +10,28 @@ body{
 
 #gifPlayer{
   background-image: url(../img/Lambo.gif);
-  background-position: 260px -100px;
-  background-size: 90%;
+  background-position: 50px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
   width: 100%;
 }
 
-#profileLower{
-  height: 40vh;
+#profileUpper{
+  max-height: 100vh;
+}
+
+.profileCard{
+  height: 25vh;
+  background: linear-gradient(-165deg, #c6c6c6, #303030);
+
+}
+
+.profpic{
+  width: 120px;
+  height: 10vh;
+  padding-right: 5%;
 }
 
 #welcomeText{
@@ -29,4 +41,14 @@ body{
   width: 100%;
   text-align: center;
   color: white;
+}
+
+#myTab{
+  background-color: #303030;
+}
+
+@media screen and (max-width: 1450px;) {
+  #patFit{
+    font-size: 2px !important;
+  }
 }
