@@ -15,7 +15,8 @@ Where the data leads is uncertain.
 
 ## Data Architecture
 
-![Data Architecture](assets/img/Architecture.PNG)
+![Data Architecture](assets/img/Data_Architecture.PNG)  
+
 __Data Architecture__ consists of three major components.
 1. __Data Acquisition__ Data is acquired from the Internet, cleaned, and loaded into a database.
 2. __Data Modeling__ Relatively static operations are done with the data.
