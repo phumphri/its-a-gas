@@ -1009,7 +1009,7 @@ def sales_rollup():
             json_metadata = {}
             json_metadata["schema"] = "its_a_gas"
             json_metadata["table"] = "sales_rollup"
-            json_metadata["columns"] = ["year", "volume", "sales"]
+            json_metadata["columns"] = ["year", "market_segment", "volume", "sales"]
             json_dict['metadata'] = json_metadata
  
             # Add table_data to json dictionary.
