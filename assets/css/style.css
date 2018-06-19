@@ -18,6 +18,11 @@ body{
   width: 100%;
 }
 
+.overlayclick{
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
 #profileUpper{
   max-height: 100vh;
 }
