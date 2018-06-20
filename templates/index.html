@@ -13,7 +13,7 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
   <!-- Linking own CSS -->
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('assets', filename='css/style.css') }}">
 </head>
 
 <body class="full-height">
@@ -81,16 +81,16 @@
           <!-- Data and Gif Area -->
           <ul class="nav nav-tabs w-100 rounded-0" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+              <a class="nav-link active rounded-0" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="analysis1" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Analysis 1</a>
+              <a class="nav-link rounded-0" id="analysis1" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Analysis 1</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Analysis 2</a>
+              <a class="nav-link rounded-0" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Analysis 2</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="analysis-3" data-toggle="tab" href="#analysis3" role="tab" aria-controls="contact" aria-selected="false">Analysis 3</a>
+              <a class="nav-link rounded-0" id="analysis-3" data-toggle="tab" href="#analysis3" role="tab" aria-controls="contact" aria-selected="false">Analysis 3</a>
             </li>
           </ul>
 
@@ -141,7 +141,7 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
   <!-- Linking local Js -->
-  <script type="text/javascript" src="../assets/js/webApp.js"></script>
+  <script type="text/javascript" src="{{ url_for('assets', filename='js/webApp.js') }}"></script>
 </body>
 
 </html>
