@@ -8,6 +8,10 @@ body{
   /* background-color: #030312; */
 }
 
+.nunitoFont {
+  font-family: 'Nunito', sans-serif;
+}
+
 #gifPlayer{
   background-image: url(../img/Lambo.gif);
   background-position: 50px;
