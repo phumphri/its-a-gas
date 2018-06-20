@@ -48,6 +48,10 @@ def connect_to_postgres():
 def home():
     return render_template("index.html")
 
+@app.route("/as_built")
+def as_built():
+    return render_template("as_built.html")
+
 
 @app.route('/manufacturer', methods=['POST', 'GET', 'DELETE'])
 def manufacturer():
