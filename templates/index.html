@@ -101,14 +101,17 @@
             <a class="nav-link rounded-0" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Total Auto Sales</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link rounded-0" id="analysis-3" data-toggle="tab" href="#analysis3" role="tab" aria-controls="contact" aria-selected="false">Back-End Schema</a>
+            <a class="nav-link rounded-0" id="analysis-3" data-toggle="tab" href="#analysis3" role="tab" aria-controls="analysis" aria-selected="false">Back-End Schema</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link rounded-0" id="hp" data-toggle="tab" href="#hp-analysis" role="tab" aria-controls="hpanalysis" aria-selected="false">HP Metrics</a>
           </li>
         </ul>
 
 
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div id="welcomeText">
+            <div id="welcomeText" class="nunitoFont">
               <h1 class="text-center">Welcome to Its-a-Gas</h1>
               <p>Ritter Gustave, Ellen Chen, Alex Mathiessen, Patrick Humphries</p>
             </div>
@@ -148,6 +151,14 @@
               </div>
 
               <!-- End Analysis Section -->
+            </div>
+          </div>
+          <div class="tab-pane fade" id="hp-analysis" role="tabpanel" aria-labelledby="hpanalysis">
+            <div class="row mx-0 w-100 overlayclick" style="height: 95vh;">
+              <div class="mx-auto my-auto">
+                <!-- <iframe src="../static/Alex_Graph/hp.html" width="1000px" height="600"></iframe> -->
+                <iframe src="{{ url_for('static', filename="Alex_Graph/hp.html") }}" width="1000" height="600"></iframe>
+              </div>
             </div>
           </div>
 
